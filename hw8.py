@@ -11,6 +11,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 import warnings
 warnings.filterwarnings("ignore")
 np.set_printoptions(precision=2)
+pd.set_option('display.precision', 2)
 
 def gini(p):
     return 1 - (p**2 + (1-p)**2)
@@ -129,6 +130,7 @@ plt.tight_layout()
 plt.show()
 
 best_ccp = .0085
+print(f'The best alpha on the tree is {best_ccp}\n')
 alpha_tree = tree.DecisionTreeClassifier(random_state = 5805, ccp_alpha=best_ccp).fit(X_train, y_train)
 a_score = alpha_tree.score(X_test, y_test)
 print(f'The Score for the best alpha of {best_ccp} on the train set is:\n{alpha_tree.score(X_train, y_train)}\nand the best score on the test set is:\n{a_score}\n')
